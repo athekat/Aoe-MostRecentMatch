@@ -6,7 +6,7 @@ This script:
 
 **1. Retrieves match history:**
 
-- Prompts the user to enter a Steam ID.
+- Prompts the user to enter either a Steam ID or Xbox Live ID.
 - Uses the `requests` library to fetch match history data from the Age of Empires 2 API for the specified Steam ID.
 
 **2. Processes the match data:**
