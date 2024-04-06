@@ -18,10 +18,28 @@ civ_list = {
     43: "Vietnamese", 44: "Vikings", 35: "Romans", 0: "Armenians", 16: "Georgians"
 }
 
-steamid = input(str("Type in the player's Steam ID: "))
+# Prompt user to choose between /steam/ and /xboxlive/
+print("Choose the player's ID:")
+print("1. Steam ID")
+print("2. Xbox Live ID")
+platform_choice = input("Enter the number of your choice: ")
+
+# Validate user input
+while platform_choice not in ['1', '2']:
+    print("Invalid choice. Please enter either '1' for Steam or '2' for Xbox Live.")
+    platform_choice = input("Enter the number of your choice: ")
+
+# Set platform based on user choice
+if platform_choice == '1':
+    platform = 'steam'
+else:
+    platform = 'xboxlive'
+
+# Prompt user for the player's ID
+playerid = input("Type in the player's ID: ")
 
 # API
-URL = f"https://aoe-api.reliclink.com/community/leaderboard/getRecentMatchHistory?title=age2&profile_names=[%22/steam/{steamid}%22]"
+URL = f"https://aoe-api.reliclink.com/community/leaderboard/getRecentMatchHistory?title=age2&profile_names=[%22/{platform}/{playerid}%22]"
 TIMEOUT = 10
 
 
@@ -74,7 +92,7 @@ try:
             grouped_by_team[team_id].append(player)
 
         # Print date and map
-        print(f"Date: {most_recent_match['startgametime']} \nMap: {most_recent_match['mapname']}\n")
+        print(f"\n==========================\nDate: {most_recent_match['startgametime']} \nMap: {most_recent_match['mapname']}\n")
 
         # Sort team ids
         sorted_team_ids = sorted(grouped_by_team.keys())
@@ -87,12 +105,12 @@ try:
                 print(f"{player['alias']} ({player['elo']}) - {player['civ']}")
             print()
     else:
-        print(f"No matches found for Steam ID: {steamid}")
+        print(f"No matches found for Steam ID: {playerid}")
 
 except requests.RequestException as e:
     print(f"Request failed: {e}")
 except KeyError:
-    print(f"Invalid response format. No 'matchHistoryStats' key found. No matches for Steam ID: {steamid}")
+    print(f"Invalid response format. No 'matchHistoryStats' key found. No matches for Steam ID: {playerid}")
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
 
