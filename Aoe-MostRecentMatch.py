@@ -39,7 +39,7 @@ else:
 playerid = input("Type in the player's ID: ")
 
 # API
-URL = f"https://aoe-api.reliclink.com/community/leaderboard/getRecentMatchHistory?title=age2&profile_names=[%22/{platform}/{playerid}%22]"
+URL = f"https://aoe-api.worldsedgelink.com/community/leaderboard/getRecentMatchHistory?title=age2&profile_names=[%22/{platform}/{playerid}%22]"
 TIMEOUT = 10
 
 
@@ -73,7 +73,7 @@ try:
                 player_info.append({
                     'alias': alias,
                     'name': member['profile_id'],
-                    'civ': member['race_id'],
+                    'civ': member['civilization_id'],
                     'elo': member['oldrating'],
                     'team': member['teamid']
                 })
