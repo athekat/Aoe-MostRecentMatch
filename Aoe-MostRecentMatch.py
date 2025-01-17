@@ -6,7 +6,7 @@ def convert_timestamp_to_date(timestamp):
     return datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
 # Civ Mapping (might change with new civs DLC)
-# https://github.com/SiegeEngineers/aoc-reference-data/blob/master/data/datasets/100.json
+
 civ_list = {
     1: "Aztecs", 2: "Bengalis", 3: "Berbers", 4: "Bohemians", 5: "Britons",
     6: "Bulgarians", 7: "Burgundians", 8: "Burmese", 9: "Byzantines", 10: "Celts",
